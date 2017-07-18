@@ -35,97 +35,57 @@
 			<div class="card-title">About</div>
 			<div class="card-text">{{ about }}</div>
 		</div>
-
+		{% for section in sections %}
 		<div class="card">
-			<div class="card-title">Education</div>
-			{% for school in schools%}
+			<div class="card-title">{{ section.title }}</div>
+			<!-- Content Type -->
+			{% for element in section.content %}
 			<div class="card-list-element">
-				<div class="card-list-title">{{ school.title }}</div>
-				<div class="card-list-subtitle">{{ school.subtitle }}</div>
+				<div class="card-list-title">{{ element.title }}</div>
+				{% for subtitle in element.subtitles %}
+				<div class="card-list-subtitle">{{ subtitle }}</div>
+				{% endfor %}
+				{% if element.text is defined %}
 				<div class="card-hidden">
-					<div class="card-list-text">{{ school.text }}</div>
+					<div class="card-list-text">{{ element.text }}</div>
 				</div>
+				{% endif %}
 			</div>
 			{% endfor %}
-		</div>
-
-		<div class="card">
-			<div class="card-title">Employment</div>
-			{% for job in jobs %}
-			<div class="card-list-element">
-				<div class="card-list-title">{{ job.title }}</div>
-				<div class="card-list-subtitle">{{ job.position }} <br /> {{ job.dates }}</div>
-				<div class="card-hidden">
-					<div class="card-list-text">{{ job.text }}</div>
-				</div>
-			</div>
-			{% endfor %}
-		</div>
-
-		<div class="card">
-			<div class="card-title">Experience</div>
-			<div class="card-list-element no_select small">
-				<b class="no_select">Proficent:</b> {{ experiences.proficient }}
-			</div>
-			<div class="card-list-element no_select small">
-				<b class="no_select">Some Experience:</b> {{ experiences.some }}
-			</div>
-			<div class="card-list-element no_select small">
-				<b class="no_select">Frameworks &amp; Libraries:</b> {{ experiences.frameworks }}
-			</div>
-			<div class="card-list-element no_select small">
-				<b class="no_select">Tools:</b> {{ experiences.tools }}
-			</div>
-		</div>
-
-		<div class="card">
-			<div class="card-title">Projects</div>
-			{% for project in projects %}
+			<!-- End Content Type -->
+			<!-- Paired Content Type -->
+			{% for element in section.pairedContent %}
+			{% if element.hidden is defined %}
 			<div class="card-list-element small">
-				<b>{{ project.title }}:</b> {{ project.description }}
+				<b>{{ element.title }}:</b> {{ element.subtitle }}
 				<div class="card-hidden">
-					<div class="card-list-text">{{ project.text }}</div>
-					{% if project.uses is defined %}
+					{% if element.hidden.text is defined %}
+					<div class="card-list-text">{{ element.hidden.text }}</div>
+					{% endif %}
+					{% for pair in element.hidden.pairedContent %}
 					<br />
 					<p>
-						<b>Uses: </b> {{ project.uses }}
+						<b>{{ pair.title }}:</b> {{ pair.subtitle }}
 					</p>
-					{% endif %}
-					{% for button in project.buttons %}
+					{% endfor %}
+					{% for button in element.hidden.buttons %}
 					<a  style="color: {{ color }}"class="card-button" href="{{ button.link }}" target="_blank">{{ button.text }}</a>
 					{% endfor %}
 				</div>
 			</div>
-			{% endfor %}
-		</div>
-
-		<div class="card">
-			<div class="card-title">Awards</div>
-			{% for award in awards %}
-			<div class="card-list-element">
-				<div class="card-list-title">{{ award.title }}</div>
-				<div class="card-list-subtitle">{{ award.subtitle }} <br /> {{ award.dates }}</div>
-				<div class="card-hidden">
-					<div class="card-list-text">{{ award.text }}</div>
-				</div>
-			</div>
-			{% endfor %}
-		</div>
-
-		<div class="card">
-			<div class="card-title">Activites</div>
-			{% for activity in activities %}
+			{% else %}
 			<div class="card-list-element no_select small">
-				<b class="no_select">{{ activity.title }}:</b> {{ activity.description }}
+				<b class="no_select">{{ element.title }}:</b> {{ element.subtitle }}
 			</div>
+			{% endif %}
 			{% endfor %}
+			<!-- End Paired Content -->
 		</div>
+		{% endfor %}
 
-		<div id="footer">© {{ title }}</div>
-		<div id="recognition">Generated using <a href="https://github.com/tylerkrupicka/material-resume">Material-Resume</a></div>
 	</div>
 
-
+		
 </body>
 
 </html>

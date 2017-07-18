@@ -1,8 +1,9 @@
 {
-	"schools": [
+	"title": "Education",
+	"content": [
 		{
 			"title": "A School",
-			"subtitle": "English Major",
+			"subtitles": ["English Major"],
 			"text": "In my spare time I used this static site generator."
 		}
 	]

@@ -1,0 +1,28 @@
+{
+	"title": "Projects",
+	"pairedContent": [
+		{
+			"title": "Valleygirl",
+			"subtitle": "A Chrome extension that discreetly clicks every Facebook like button.",
+			"hidden" : {
+				"text": "The best extension ever made.",
+				"pairedContent": [
+					{
+						"title": "Uses",
+						"subtitle": "Javascript, JQuery"
+					}
+				],
+				"buttons": [
+					{
+						"text": "GITHUB",
+						"link": "https://github.com/tylerkrupicka/valleygirl"
+					},
+					{
+						"text": "CHROME",
+						"link": "https://chrome.google.com/webstore/detail/valley-girl/aaobhafeeoijpgnohafhbpjldeoldpin"
+					}
+				]
+			}
+		}
+	]
+}

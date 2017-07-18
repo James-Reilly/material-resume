@@ -1,0 +1,21 @@
+{
+	"title": "Experience",
+	"pairedContent": [
+		{
+			"title": "Proficient",
+			"subtitle": "Eating, Breathing."
+		},
+		{
+			"title": "Some",
+			"subtitle": "Reading."
+		},
+		{
+			"title": "Frameworks",
+			"subtitle": "Does HTML count?"
+		},
+		{
+			"title": "Tools",
+			"subtitle": "A series of tubes."
+		}
+	]
+}

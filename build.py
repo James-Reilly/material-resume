@@ -8,21 +8,25 @@ class Builder():
 	def __init__(self):
 		self.this_dir = os.path.dirname(os.path.abspath(__file__))
 		self.environment = Environment(loader=FileSystemLoader(self.this_dir + "/templates"),trim_blocks=True)
-		self.config = {}
+		self.config = {
+			"sections": []
+		}
 
 	def load_configs(self):
-		self.load_config("configs/config.json") #Main config
-		self.load_config("configs/education.json") #Education config
-		self.load_config("configs/employment.json") #Employment config
-		self.load_config("configs/projects.json") #Project config
-		self.load_config("configs/awards.json") #Awards config
-		self.load_config("configs/activities.json") #Activites config
-		self.load_config("configs/experience.json") #Experience config
+		self.load_config("config.json") #Main config
+		for root, dirs, files in os.walk("content"):
+			for name in files:
+				self.load_content(os.path.join(root, name))
 
 	def load_config(self, path):
 		with open(path) as config:
 			data = json.load(config)
 		self.config.update(data)
+
+	def load_content(self, path):
+		with open(path) as config:
+			data = json.load(config)
+		self.config["sections"].append(data);
 
 	def write_config(self, path, data):
 		with open(path, "w") as config:
